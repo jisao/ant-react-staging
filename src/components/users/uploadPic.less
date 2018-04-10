@@ -1,0 +1,32 @@
+#uploadPic{
+    .imgUrl{
+        transition: all 300ms linear;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+        margin-bottom: 0;
+        &:hover{
+            color: orangered;
+        }
+    }
+    .ant-card-cover{
+        height:79%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .pic{
+        transition: all 300ms linear;
+    }
+    .ant-upload.ant-upload-drag{
+        background-color: #fff !important;
+    }
+    .ant-card-body{
+        padding: 20px !important;
+    }
+    .ant-card-hoverable{
+        padding: 5px;
+    }
+}

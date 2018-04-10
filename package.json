@@ -1,0 +1,50 @@
+{
+  "name": "ant-react-demo",
+  "version": "1.0.0",
+  "description": "ant React Redux Router",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config ./webpack.dev.js --inline --hot --open",
+    "build": "webpack"
+  },
+  "author": "nitao",
+  "license": "ISC",
+  "devDependencies": {
+    "ant-design-pro": "^0.3.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-import": "^1.7.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "copy-to-clipboard": "^3.0.8",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^2.30.1",
+    "http-proxy-middleware": "^0.17.4",
+    "jquery": "^3.3.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "script-loader": "^0.7.2",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "antd": "^3.4.1",
+    "axios": "^0.16.2",
+    "file-loader": "^1.1.11",
+    "wangeditor": ">=3.0.0", 
+    "webpack-dev-server": "^2.9.5"
+  }
+}

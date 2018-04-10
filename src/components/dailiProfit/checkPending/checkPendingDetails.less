@@ -1,0 +1,38 @@
+
+.checkPengdingDetails_container{
+   
+    .ant-upload-list-item{//设置缩略图片大小
+        width: 45px;
+        height: 45px;
+        padding: 1px;
+        border-radius: 4px;
+    }
+    .anticon-delete{
+        display: none !important;
+    }
+    .remarkBox{
+        display: flex;
+        .handleIcon{
+            margin-left: 5px;
+            span:nth-of-type(1){
+                cursor: pointer;
+                width: 50px;
+                &:hover{
+                    color: #40A9FF;
+                }
+            }
+            .hide{
+                display: none;
+            }
+        }
+        .remarkTextArea{
+            resize: none;
+        }
+    }
+    .outerHighlight{
+        color: #fa3535;
+    }
+    // .antd-pro-page-header-pageHeader{
+    //      padding: 16px 32px 0 39px !important;
+    // }
+}
