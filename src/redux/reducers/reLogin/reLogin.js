@@ -1,20 +1,17 @@
-const list = [];
+const list = false;
 
+import {LOGIN_SUCCESS} from '../../actions/acLogin/acLogin'
 
-
-import { USER_LOGIN, LOGIN_IN } from "../../actions/acLogin/acLogin";
-
-function userLoginList(state = list, action) {
+function loginSys(state = list, action) {
+    console.log(action);
     switch (action.type) {
-        case USER_LOGIN:
-        return action.data
-        case LOGIN_IN:
-            return action.data
+        case LOGIN_SUCCESS:
+            return action.data;
         default:
-
-            return state;
+            return state
     }
 }
 
-
-export default userLoginList
+export {
+    loginSys
+}

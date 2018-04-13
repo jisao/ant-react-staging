@@ -1,5 +1,9 @@
-import {createStore} from 'redux'
+import { applyMiddleware, createStore } from 'redux';
 import reducers from './reducers/reducers'
+import { createLogger } from 'redux-logger';
+const logger = createLogger();
 
-//把reducers注入store
-export const store = createStore(reducers)
+export const store = createStore(
+    reducers,
+    applyMiddleware(logger)
+);

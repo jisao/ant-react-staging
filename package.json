@@ -4,9 +4,9 @@
   "description": "ant React Redux Router",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config ./webpack.dev.js --inline --hot --open",
-    "build": "webpack"
+    "dev": "webpack-dev-server --config ./webpack.dev.js --inline --progress --color --hot --open",
+    "build": "webpack --progress --color",
+    "build:dll": "roadhog buildDll"
   },
   "author": "nitao",
   "license": "ISC",
@@ -30,11 +30,16 @@
     "jquery": "^3.3.1",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
+    "node-sass": "^4.8.3",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "roadhog": "^2.3.0",
+    "sass-loader": "^6.0.7",
     "script-loader": "^0.7.2",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
@@ -44,7 +49,12 @@
     "antd": "^3.4.1",
     "axios": "^0.16.2",
     "file-loader": "^1.1.11",
-    "wangeditor": ">=3.0.0", 
+    "wangeditor": ">=3.0.0",
     "webpack-dev-server": "^2.9.5"
+  },
+  "theme": {
+    "@blue-6": "#1890ff",
+    "@layout-header-background": "#001529",
+    "@menu-dark-submenu-bg": "#000c17"
   }
 }

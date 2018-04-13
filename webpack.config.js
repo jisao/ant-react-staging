@@ -2,12 +2,15 @@ var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var proxy = require('http-proxy-middleware')//解决跨域
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const theme = require('./package.json').theme;
+
 module.exports = {
 	name: "production",
 	entry: {
 		index: "./src/index.js",
 		//添加要打包在vendors里面的库
-		// vendor: ['react', 'react-dom', 'react-router', "antd"]
+		vendor: ['react', 'react-dom', 'react-router', "antd"]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -19,8 +22,8 @@ module.exports = {
 			minimize: true,
 			compress: {
 				warnings: false,
-				drop_debugger: true,  
-				drop_console: true  
+				drop_debugger: true,
+				drop_console: true
 			}
 		}),
 		new ExtractTextPlugin("styles.css"),
@@ -50,7 +53,7 @@ module.exports = {
 	},
 	//配置;打包之后的文件信息
 	output: {
-		path: __dirname + "/xinghuo-mng-static/",
+		path: __dirname + "/dist/",
 		filename: "[name].js",
 		publicPath: '',
 		chunkFilename: "[name].js",
@@ -69,13 +72,26 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules|server|dao|routes/,
 				loader: "babel-loader"
+			},  {
+				test: /\.jsx$/,
+				exclude: /node_modules|server|dao|routes/,
+				loader: "babel-loader"
 			}, {
 				test: /\.css$/,
 				// loader: "style-loader!css-loader"
+				//把css单独打包
 				use: ExtractTextPlugin.extract({ fallback: "style-loader", use: ["css-loader"] }),
 			}, {
 				test: /\.less$/,
-				loader: "style-loader!css-loader!less-loader"
+				use: [
+					'style-loader',
+					'css-loader',
+					{ loader: 'less-loader', options: { modifyVars: theme } },
+				],
+				include: /node_modules/,
+			}, {
+				test: /\.scss$/,
+				loaders: 'style-loader!css-loader!sass-loader'
 			}, {
 				test: /\.(png|jpe?g|eot|svg|ttf|woff2?)$/,
 				loader: 'url-loader?limit=8192'

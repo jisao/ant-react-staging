@@ -1,0 +1,48 @@
+$hoverBg:#E6F7FF;
+
+#head {
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08) !important;
+    margin-bottom: 2px;
+    background-color: #FFF;
+    .ant-layout-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .trigger {
+        font-size: 20px;
+        margin-left: 20px;
+        cursor: pointer;
+        transition: color linear 300ms;
+        &:hover {
+            color: #001529;
+        }
+    }
+    .head_right {
+        display: flex;
+        align-items: center;
+        .notice-icon {
+            width: 60px;
+            text-align: center;
+        }
+    }
+    #avatar {
+        margin-left: 20px;
+        margin-right: 40px;
+        .userName {
+            padding: 0 8px;
+        }
+    }
+}
+
+.antd-pro-notice-icon-clear{
+    display: none !important;
+}
+.anticon-bell[data-type = newMsg]{
+    animation:bell 300ms infinite;
+}
+@keyframes bell {
+    from {color:red;}
+    to {color:yellow;}
+}
+

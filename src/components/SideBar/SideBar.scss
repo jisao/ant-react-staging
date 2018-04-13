@@ -1,0 +1,50 @@
+#sideBar {
+    box-shadow: 3px 0 5px #bfbfbf;
+    transition: all .3s;
+    position: relative;
+    &.light {
+        background-color: #fff;
+    }
+    &.dark {
+        background-color: #001529;
+    }
+    .logo {
+        height: 64px;
+        line-height: 64px;
+        text-align: center;
+        color: #FFF;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        span {
+            color: #1890ff;
+            font-size: 26px;
+            font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            padding-left: 12px;
+        }
+        img {
+            opacity: 0.9
+        }
+        .hide {
+            display: none;
+        }
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 50px;
+        width: 100%;
+        transition: all .3s;
+        &.dark {
+            color: #fff;
+        }
+        .hide{
+            display: none;
+        }
+    }
+}
