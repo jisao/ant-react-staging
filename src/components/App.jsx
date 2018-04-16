@@ -1,11 +1,13 @@
 import React from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
 import { Layout, Menu, Icon, Breadcrumb } from 'antd';
+import GlobalFooter from 'ant-design-pro/lib/GlobalFooter';
+import { rootSubmenuKeys } from '../config/menu'
+import defaultConfig from '../config/default'
+
 const { SubMenu } = Menu
 const { Header, Sider, Content, Footer } = Layout;
-import GlobalFooter from 'ant-design-pro/lib/GlobalFooter';
-import { menus } from './SideBar/menu.cofig'
-const {rootSubmenuKeys} = menus
+
 import './SideBar/SideBar.scss'
 //引入模块组件
 import Sidebar from './SideBar/SideBar.jsx'//侧边导航栏
@@ -21,7 +23,7 @@ class App extends React.Component {
         this.state = {
             collapsed: false,
             openKeys: [`${rootSubmenuKeys[0]}`],
-            MenuTheme: 'light',//默认为白色
+            MenuTheme: 'light',//默认为白色,
         }
     }
 
@@ -30,21 +32,21 @@ class App extends React.Component {
         let { collapsed, openKeys, MenuTheme } = this.state
 
         return (
-            <Layout style={{ height: '100%' }}>
-                <Sider trigger={null} className={MenuTheme === 'light' ? 'light' : 'dark'} collapsed={collapsed} width={200} collapsedWidth={80}
-                    id="sideBar">
-                    <Sidebar MenuTheme={MenuTheme} changeTheme={this.changeTheme} collapsed={collapsed} openKeys={openKeys}  onOpenChange={this.onOpenChange}></Sidebar>
-                </Sider>
-                <Layout>
-                    <Head collapsed={collapsed} toggle={this.toggle}></Head>
+                <Layout style={{ height: '100%' }}>
+                    <Sider trigger={null} className={MenuTheme === 'light' ? 'light' : 'dark'} collapsed={collapsed} width={200} collapsedWidth={80}
+                        id="sideBar">
+                        <Sidebar MenuTheme={MenuTheme} changeTheme={this.changeTheme} collapsed={collapsed} openKeys={openKeys} onOpenChange={this.onOpenChange}></Sidebar>
+                    </Sider>
                     <Layout>
-                        <Content id="containerScreen">
-                            <Routes></Routes>
-                            <GlobalFooter className="loginFooter" copyright={<div>Copyright <Icon type="copyright" /> 2018 copyright</div>} />
-                        </Content>
+                        <Head collapsed={collapsed} toggle={this.toggle}></Head>
+                        <Layout>
+                            <Content id="containerScreen">
+                                <Routes></Routes>
+                                <GlobalFooter className="loginFooter" copyright={<div>Copyright <Icon type="copyright" /> {defaultConfig.footerText}</div>} />
+                            </Content>
+                        </Layout>
                     </Layout>
                 </Layout>
-            </Layout>
         );
     }
 

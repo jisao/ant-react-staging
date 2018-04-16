@@ -247,10 +247,10 @@ class Head extends React.Component {
                 document.querySelector('#msgAudio').play()
             } else {
                 document.querySelector("#sysHead .anticon-bell").setAttribute("data-type", "");
-                document.querySelector('#msgAudio').pause()            
+                document.querySelector('#msgAudio').pause()
             }
-        }else{
-            this.openNotificationWithIcon('error',obj.data.message)
+        } else {
+            this.openNotificationWithIcon('error', obj.data.message)
         }
     }
 

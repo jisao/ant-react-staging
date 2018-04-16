@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
-import './Login.scss';
 import { clickLoginBtn, getCode } from '../../redux/actions/acLogin/acLogin'
+import defaultConfig from '../../config/default'
+import './Login.scss';
+import { fetch } from '../../utils/request'
 const FormItem = Form.Item;
+
 
 class NormalLoginForm extends React.Component {
 
@@ -14,7 +17,16 @@ class NormalLoginForm extends React.Component {
         }
     }
 
+
     handleSubmit = (e) => {
+        // getCode((action) => {
+        //     if(action){
+        //         _this.props.dispatch(action)
+        //     }
+        // })
+        // fetch({ url: '/login/code' }, (action) => {
+        //     console.log(action);
+        // })
         e.preventDefault();
         let _this = this
         this.props.form.validateFields((err, values) => {
@@ -61,8 +73,8 @@ class NormalLoginForm extends React.Component {
             <div id="login_container">
                 <div id="login_form">
                     <div className="head">
-                        <img src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg' height="40" alt="logo" />
-                        <span>Ant</span>
+                        <img src={defaultConfig.logo} height="40" alt="logo" />
+                        <span>{defaultConfig.name}</span>
                     </div>
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem>
