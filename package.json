@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack.dev.js --inline --progress --color --hot --open",
-    "build": "webpack --progress --color",
-    "build:dll": "roadhog buildDll"
+    "build": "webpack --progress --color"
   },
   "author": "nitao",
   "license": "ISC",

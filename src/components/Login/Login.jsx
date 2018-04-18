@@ -48,7 +48,7 @@ class NormalLoginForm extends React.Component {
                         if (_this.props.loginSys) {
                             /*存入登陆的状态*/
                             sessionStorage.setItem('login', true)
-                            _this.props.history.push('/routes')
+                            _this.props.history.push('/routes/Analyze')
                         }
                         /*异步处理*/
                         // getCode((action)=>{

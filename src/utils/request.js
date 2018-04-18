@@ -1,18 +1,11 @@
 import axios from 'axios'
-//定义fetch函数，config为配置
 import { openNotification } from './tool'
-
-// export function fetch({ url, data }) {
-//     //返回promise对象
-//     return new Promise((resolve, reject) => {
-//         axios.post(url).then(res => {
-//             resolve(res.data)
-//         }).catch(err => {
-//             reject(err)
-//         })
-//     });
-// }
-
+var baseURL = ''
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://120.78.83.217:8808/art-cms';
+} else if (process.env.NODE_ENV === 'production') {
+    baseURL = '/art-cms';
+}
 /*通过action调用api*/
 export function request({ url, method, callback, type }) {
     let obj = axios({
@@ -40,23 +33,32 @@ export function request({ url, method, callback, type }) {
 }
 
 /*直接调用api*/
-export function fetch({ url, method }, callback) {
-    let obj = axios({
-        method: method || "POST",
+export function fetch({ url, method, headers, params, data, success, fail }) {
+    const newAxios = axios.create({
+        //定义请求根目录
+        baseURL
+    });
+    let obj = newAxios({
         url,
+        method: "POST",
+        headers: headers || {},
+        params: params || {},
+        data: data || {},
     })
         .then(response => {
             if (response.data.code > 0) {
                 openNotification({ description: response.data.message })
+                fail(response)
             }
 
             if (response.data.code === 0) {
-                callback(response.data)
+                success(response.data)
             }
         })
         .catch(error => {
             if (error) {
                 openNotification({ description: `${url}请求数据失败` })
+                fail(error)
             }
         })
 }
