@@ -1,4 +1,5 @@
 import { notification, Modal } from 'antd';
+import NProgress from 'nprogress';
 const confirm = Modal.confirm;
 export function openNotification({ type, message, description }) {
     notification[type || 'error']({
@@ -30,4 +31,11 @@ export function openModal({ type, title, content, okFn }) {
             }
         },
     });
+}
+
+export function NProgressInitPage(){
+    NProgress.start()
+    setTimeout(()=>{
+        NProgress.done()
+    },1500)
 }

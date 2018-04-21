@@ -2,7 +2,10 @@ import { List, Avatar, Button, Spin } from 'antd';
 import React from 'react';
 import reqwest from 'reqwest';
 import PageHeader from 'ant-design-pro/lib/PageHeader';
+import { fetch } from '../../utils/request';
 
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css'
 
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 const breadcrumbList = [{
@@ -29,12 +32,14 @@ export default class LoadMoreList extends React.Component {
     });
   }
   getData = (callback) => {
+    NProgress.start()
     reqwest({
       url: fakeDataUrl,
       type: 'json',
       method: 'get',
       contentType: 'application/json',
       success: (res) => {
+        NProgress.done()
         callback(res);
       },
     });
@@ -71,6 +76,7 @@ export default class LoadMoreList extends React.Component {
           breadcrumbList={breadcrumbList}>
         </PageHeader>
         <div style={{ backgroundColor: '#fff', margin: 24, padding: 24 }}>
+
           <List
             className="demo-loadmore-list"
             loading={loading}

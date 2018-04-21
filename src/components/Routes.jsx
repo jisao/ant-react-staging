@@ -16,6 +16,26 @@ import Table1 from './Table/Table1.jsx'
 import Table2 from './Table/Table2.jsx'
 import Table3 from './Table/Table3.jsx'
 import Table4 from './Table/Table4.jsx'
+
+/**
+ * 卡片
+ */
+import CardDemo from './Card/Card.jsx'
+
+/**
+ * 步骤条
+ */
+import StepDemo from './Step/Step.jsx'
+
+/**
+ * 小插件
+ */
+//试色器
+import GetColor from './Plugin/GetColor.jsx'
+//富文本编辑器
+import EditorDemo from './Plugin/WangEditor.jsx'
+//高德地图
+import GDmap from './Plugin/GDmap.jsx'
 class SideRouter extends React.Component {
     render() {
         return (
@@ -30,10 +50,17 @@ class SideRouter extends React.Component {
                 <Route path="/routes/Table2" component={Table2}></Route>
                 <Route path="/routes/Table3" component={Table3}></Route>
                 <Route path="/routes/Table4" component={Table4}></Route>
-
-                <Route path="/routes/4" component={Analyze}></Route>
-                <Route path="/routes/5" component={Analyze}></Route>
+                {/* 卡片 */}
+                <Route path="/routes/CardDemo" component={CardDemo}></Route>
+                {/* 步骤条 */}
+                <Route path="/routes/StepDemo" component={StepDemo}></Route>
+                {/* 小插件 */}
+                <Route path="/routes/GetColor" component={GetColor}></Route>
+                <Route path="/routes/EditorDemo" component={EditorDemo}></Route>
+                <Route path="/routes/GDmap" component={GDmap}></Route>
                 <Route path="/routes/6" component={Analyze}></Route>
+                <Route path="/routes/6" component={Analyze}></Route>
+
             </div>
         )
     }

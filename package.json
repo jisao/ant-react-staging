@@ -49,7 +49,10 @@
     "antd": "^3.4.1",
     "axios": "^0.16.2",
     "file-loader": "^1.1.11",
-    "wangeditor": ">=3.0.0",
+    "nprogress": "^0.2.0",
+    "react-amap": "^1.2.7",
+    "react-color": "^2.14.1",
+    "wangeditor": "^3.1.1",
     "webpack-dev-server": "^2.9.5"
   },
   "theme": {

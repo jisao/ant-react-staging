@@ -1,10 +1,11 @@
-import axios from 'axios'
-import { openNotification } from './tool'
-var baseURL = ''
+import axios from 'axios';
+import { openNotification } from './tool';
+import NProgress from 'nprogress';
+var baseURL=''
 if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://120.78.83.217:8808/art-cms';
+    baseURL = 'http://xxxxxx/controller-mng';
 } else if (process.env.NODE_ENV === 'production') {
-    baseURL = '/art-cms';
+    baseURL = '/controller-mng';
 }
 /*通过action调用api*/
 export function request({ url, method, callback, type }) {
@@ -34,18 +35,20 @@ export function request({ url, method, callback, type }) {
 
 /*直接调用api*/
 export function fetch({ url, method, headers, params, data, success, fail }) {
+    NProgress.start()
     const newAxios = axios.create({
         //定义请求根目录
         baseURL
     });
     let obj = newAxios({
         url,
-        method: "POST",
+        method: method || "POST",
         headers: headers || {},
         params: params || {},
         data: data || {},
     })
         .then(response => {
+            NProgress.done()
             if (response.data.code > 0) {
                 openNotification({ description: response.data.message })
                 fail(response)
@@ -56,9 +59,11 @@ export function fetch({ url, method, headers, params, data, success, fail }) {
             }
         })
         .catch(error => {
+            NProgress.done()
             if (error) {
                 openNotification({ description: `${url}请求数据失败` })
-                fail(error)
+                if (fail)
+                    fail(error)
             }
         })
 }

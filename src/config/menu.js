@@ -1,5 +1,5 @@
 module.exports = {
-    rootSubmenuKeys: ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6'],//左边导航主菜单配置
+    rootSubmenuKeys: ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6', 'sub7'],//左边导航主菜单配置
     menusData: [
         {
             name: '数据统计',
@@ -70,16 +70,51 @@ module.exports = {
             ]
         },
         {
-            name: '导航五',
+            name: '卡片',
             icon: 'dashboard',
             key: 'sub5',
             children: [
                 {
-                    name: 'item',
+                    name: '卡片详情页',
                     icon: 'form',
-                    path: '/routes/Detail',
+                    path: '/routes/CardDemo',
                 }
             ]
         },
+        {
+            name: '步骤条',
+            icon: 'dashboard',
+            key: 'sub6',
+            children: [
+                {
+                    name: '步骤条详情页',
+                    icon: 'form',
+                    path: '/routes/StepDemo',
+                }
+            ]
+        },
+        {
+            name: '小插件',
+            icon: 'dashboard',
+            key: 'sub7',
+            children: [
+                {
+                    name: '拾色器',
+                    icon: 'form',
+                    path: '/routes/GetColor',
+                },
+                {
+                    name: '富文本编辑器',
+                    icon: 'form',
+                    path: '/routes/EditorDemo',
+                },
+                {
+                    name: '高德地图',
+                    icon: 'form',
+                    path: '/routes/GDmap',
+                }
+            ]
+        },
+
     ]
 } 
