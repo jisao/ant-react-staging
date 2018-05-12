@@ -4,8 +4,8 @@
   "description": "ant React Redux Router",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack.dev.js --inline --progress --color --hot --open",
-    "build": "webpack --progress --color"
+    "dev": "webpack-dev-server --config ./webpack.dev.js --inline --progress --hot --open",
+    "build": "webpack --progress"
   },
   "author": "nitao",
   "license": "ISC",
@@ -52,6 +52,9 @@
     "nprogress": "^0.2.0",
     "react-amap": "^1.2.7",
     "react-color": "^2.14.1",
+    "react-countup": "^3.0.3",
+    "react-zmage": "^0.1.7",
+    "screenfull": "^3.3.2",
     "wangeditor": "^3.1.1",
     "webpack-dev-server": "^2.9.5"
   },

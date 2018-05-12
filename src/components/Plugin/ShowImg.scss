@@ -1,0 +1,14 @@
+.masonry {
+    column-count: 5;
+    column-gap: 0;
+    .item {
+        break-inside: avoid;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
+        &:hover{
+            background-color: #fff;
+            box-shadow: 0 0 5px #aaa;
+        }
+    }
+}

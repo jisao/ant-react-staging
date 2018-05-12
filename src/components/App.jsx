@@ -22,7 +22,8 @@ class App extends React.Component {
 
         this.state = {
             collapsed: false,
-            openKeys: [`${rootSubmenuKeys[0]}`],
+            // openKeys: [`${rootSubmenuKeys[0]}`],
+            openKeys: [''],
             MenuTheme: 'light',//默认为白色,
         }
     }
@@ -69,6 +70,7 @@ class App extends React.Component {
     }
     //设置手风琴样式,只允许展开一个
     onOpenChange = (openKeys) => {
+        console.log('展开项目',openKeys)
         const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             this.setState({ openKeys });

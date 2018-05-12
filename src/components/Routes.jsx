@@ -36,6 +36,8 @@ import GetColor from './Plugin/GetColor.jsx'
 import EditorDemo from './Plugin/WangEditor.jsx'
 //高德地图
 import GDmap from './Plugin/GDmap.jsx'
+//图片预览
+import ShowImg from './Plugin/ShowImg.jsx'
 class SideRouter extends React.Component {
     render() {
         return (
@@ -58,7 +60,7 @@ class SideRouter extends React.Component {
                 <Route path="/routes/GetColor" component={GetColor}></Route>
                 <Route path="/routes/EditorDemo" component={EditorDemo}></Route>
                 <Route path="/routes/GDmap" component={GDmap}></Route>
-                <Route path="/routes/6" component={Analyze}></Route>
+                <Route path="/routes/ShowImg" component={ShowImg}></Route>
                 <Route path="/routes/6" component={Analyze}></Route>
 
             </div>

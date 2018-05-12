@@ -15,7 +15,7 @@ module.exports = {
         },
         {
             name: '详情页',
-            icon: 'dashboard',
+            icon: 'global',
             key: 'sub2',
             children: [
                 {
@@ -27,7 +27,7 @@ module.exports = {
         },
         {
             name: "列表页面",
-            icon: 'dashboard',
+            icon: 'profile',
             key: 'sub3',
             children: [
                 {
@@ -44,7 +44,7 @@ module.exports = {
         },
         {
             name: '表格页面',
-            icon: 'dashboard',
+            icon: 'table',
             key: 'sub4',
             children: [
                 {
@@ -71,7 +71,7 @@ module.exports = {
         },
         {
             name: '卡片',
-            icon: 'dashboard',
+            icon: 'credit-card',
             key: 'sub5',
             children: [
                 {
@@ -83,7 +83,7 @@ module.exports = {
         },
         {
             name: '步骤条',
-            icon: 'dashboard',
+            icon: 'switcher',
             key: 'sub6',
             children: [
                 {
@@ -95,7 +95,7 @@ module.exports = {
         },
         {
             name: '小插件',
-            icon: 'dashboard',
+            icon: 'api',
             key: 'sub7',
             children: [
                 {
@@ -112,6 +112,11 @@ module.exports = {
                     name: '高德地图',
                     icon: 'form',
                     path: '/routes/GDmap',
+                },
+                {
+                    name: '图片预览',
+                    icon: 'form',
+                    path: '/routes/ShowImg',
                 }
             ]
         },

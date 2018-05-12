@@ -1,10 +1,13 @@
 import React from 'react';
-import { Layout, Icon, Avatar, Dropdown, Menu, Tag } from 'antd'
+import { Layout, Icon, Avatar, Dropdown, Menu, Tag } from 'antd';
+import screenfull from 'screenfull';
 import NoticeIcon from 'ant-design-pro/lib/NoticeIcon';
 import moment from 'moment';
 import './Head.scss';
 import groupBy from 'lodash/groupBy';
 const { Header } = Layout
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 const data = [{
     id: '000000001',
@@ -142,7 +145,57 @@ class Head extends React.Component {
                         type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
                         onClick={this.props.toggle}
                     />
-                    <div className="head_right">
+                    <Menu
+                        mode="horizontal"
+                        style={{ lineHeight: '64px', float: 'right' }}
+                        onClick={this.menuClick}
+                    >
+                        <Menu.Item key="full" className='fangda' onClick={this.screenFull} >
+                            <Icon type="arrows-alt" onClick={this.screenFull} />
+                        </Menu.Item>
+                        <Menu.Item key="1">
+                            <NoticeIcon
+                                className="notice-icon"
+                                count={data.length}
+                                onItemClick={onItemClick}
+                                onClear={onClear}
+                                popupAlign={{ offset: [20, -16] }}
+                            >
+                                <NoticeIcon.Tab
+                                    list={data}
+                                    title="通知"
+                                    emptyText="你已查看所有通知"
+                                    emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
+                                />
+                                <NoticeIcon.Tab
+                                    list={noticeData['消息']}
+                                    title="消息"
+                                    emptyText="您已读完所有消息"
+                                    emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
+                                />
+                                <NoticeIcon.Tab
+                                    list={noticeData['待办']}
+                                    title="待办"
+                                    emptyText="你已完成所有待办"
+                                    emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
+                                />
+                            </NoticeIcon>
+                        </Menu.Item>
+                        <SubMenu title={
+                            <Avatar style={{ backgroundColor: '#7265e6', verticalAlign: 'middle' }} size="large" id="avatar">kola</Avatar>
+                        }>
+                            <MenuItemGroup title="用户中心">
+                                <Menu.Item key="setting:1">你好 - kola</Menu.Item>
+                                <Menu.Item key="setting:2">个人信息</Menu.Item>
+                                <Menu.Item key="logout"><span onClick={this.clickLogout}>退出登录</span></Menu.Item>
+                            </MenuItemGroup>
+                            <MenuItemGroup title="设置中心">
+                                <Menu.Item key="setting:3">个人设置</Menu.Item>
+                                <Menu.Item key="setting:4">系统设置</Menu.Item>
+                            </MenuItemGroup>
+                        </SubMenu>
+                    </Menu>
+                    {/* <div className="head_right">
                         <audio src="http://xinghuoniu-image.oss-cn-shenzhen.aliyuncs.com/1517479154347_1517479154347.mp3" id="msgAudio" controls="controls" preload="true" hidden />
 
                         <NoticeIcon
@@ -188,7 +241,7 @@ class Head extends React.Component {
                                 kola
                         </Avatar>
                         </Dropdown>
-                    </div>
+                    </div> */}
                 </Header>
             </div>
         )
@@ -213,6 +266,13 @@ class Head extends React.Component {
         }
     }
 
+    //全屏
+    screenFull = () => {
+        console.log('全屏');
+        if (screenfull.enabled) {
+            screenfull.request();
+        }
+    };
 
     //获取后台消息，以及铃声的提醒
     getMsg = async () => {
