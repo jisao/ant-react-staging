@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack.dev.js --inline --progress --hot --open",
+    "online": "webpack-dev-server  --progress --hot --open",
+    "buildDev": "webpack  --config ./webpack.dev.js --progress",
     "build": "webpack --progress"
   },
   "author": "nitao",

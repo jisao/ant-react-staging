@@ -1,38 +1,52 @@
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var proxy = require('http-proxy-middleware')//解决跨域
-
 const theme = require('./package.json').theme;
 
 module.exports = {
 	name: "production",
 	entry: {
 		index: "./src/index.js",
+		vendor: ['react', 'react-dom']
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			hash: true,
 			template: './index.html',
-			cache: true
+			cache: true,
+			minify: {
+				removeComments: true,//去注释
+				collapseWhitespace: true//去空格
+			},//压缩
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			minimize: true,
+			compress: {
+				warnings: false,
+				drop_debugger: true,
+				drop_console: true
+			}
+		}),
+
+		new webpack.optimize.OccurrenceOrderPlugin(true),
+		new webpack.LoaderOptionsPlugin({
+			minimize: true
+		}),
+		new ExtractTextPlugin({
+			filename: "css/[name].css",
+			disable: false,
+			allChunks: true
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			filename: "./js/vendor.js",
+			minChunks: 3
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"development"'
+				NODE_ENV: '"production"'
 			}
 		}),
 	],
-	devServer: {
-		host: 'localhost',
-		port: '8080',
-		proxy: [
-			{
-				context: "*",
-				target: '',
-				changeOrigin: true,
-				secure: false
-			}
-		]
-	},
 	//配置source-map
 	devtool: "source-map",
 	//配置loader
@@ -50,20 +64,19 @@ module.exports = {
 				test: /\.css$/,
 				loader: "style-loader!css-loader"
 			}, {
-				test: /\.less$/,
-				use: [
-					'style-loader',
-					'css-loader',
-					{ loader: 'less-loader', options: { modifyVars: theme } },
-				],
-				include: /node_modules/,
-			}, {
 				test: /\.scss$/,
 				loaders: 'style-loader!css-loader!sass-loader'
 			}, {
 				test: /\.(png|jpe?g|eot|svg|ttf|woff2?)$/,
 				loader: 'url-loader?limit=8192'
-			}
+			}, {
+				test: /\.less$/,
+				use: [
+					'style-loader',
+					{ loader: 'css-loader', options: { importLoaders: 1 } },
+					{ loader: 'less-loader', options: { javascriptEnabled: true, modifyVars: theme } },
+				]
+			},
 		]
 	}
 }

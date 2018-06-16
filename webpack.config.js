@@ -1,6 +1,5 @@
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var proxy = require('http-proxy-middleware')//解决跨域
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const theme = require('./package.json').theme;
@@ -10,13 +9,17 @@ module.exports = {
 	entry: {
 		index: "./src/index.js",
 		//添加要打包在vendors里面的库
-		vendor: ['react', 'react-dom', 'react-router', "antd"]
+		vendor: ['react', 'react-dom']
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			hash: true,
 			template: './index.html',
-			cache: true
+			cache: true,
+			minify: {
+				removeComments: true,//去注释
+				collapseWhitespace: true//去空格
+			},//压缩
 		}),
 		new webpack.optimize.UglifyJsPlugin({
 			minimize: true,
@@ -26,12 +29,20 @@ module.exports = {
 				drop_console: true
 			}
 		}),
-		new ExtractTextPlugin("styles.css"),
+
 		new webpack.optimize.OccurrenceOrderPlugin(true),
-		//独立打包第三方文件
+		new webpack.LoaderOptionsPlugin({
+			minimize: true
+		}),
+		new ExtractTextPlugin({
+			filename: "css/[name].css",
+			disable: false,
+			allChunks: true
+		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
-			filename: 'vendors.js'
+			filename: "./js/vendor.js",
+			minChunks: 3
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -42,21 +53,18 @@ module.exports = {
 	devServer: {
 		host: 'localhost',
 		port: '8080',
-		proxy: [
-			{
-				context: "*",
-				target: '',
+		proxy: {
+			'/': {
+				target: 'https://xxxx.com',
 				changeOrigin: true,
-				secure: false
-			}
-		]
+			},
+		}
 	},
 	//配置;打包之后的文件信息
 	output: {
 		path: __dirname + "/dist/",
-		filename: "[name].js",
-		publicPath: '',
-		chunkFilename: "[name].js",
+		filename: "js/[name].js",
+		chunkFilename: "js/[name].js",
 	},
 	//配置source-map
 	devtool: "source-map",
@@ -69,26 +77,19 @@ module.exports = {
 				test: /\.html$/,
 				loader: 'html-loader'
 			}, {
-				test: /\.js$/,
-				exclude: /node_modules|server|dao|routes/,
-				loader: "babel-loader"
-			},  {
-				test: /\.jsx$/,
+				test: /\.js|\.jsx$/,
 				exclude: /node_modules|server|dao|routes/,
 				loader: "babel-loader"
 			}, {
 				test: /\.css$/,
-				// loader: "style-loader!css-loader"
-				//把css单独打包
 				use: ExtractTextPlugin.extract({ fallback: "style-loader", use: ["css-loader"] }),
 			}, {
 				test: /\.less$/,
 				use: [
 					'style-loader',
-					'css-loader',
-					{ loader: 'less-loader', options: { modifyVars: theme } },
-				],
-				include: /node_modules/,
+					{ loader: 'css-loader', options: { importLoaders: 1 } },
+					{ loader: 'less-loader', options: { javascriptEnabled: true, modifyVars: theme } },
+				]
 			}, {
 				test: /\.scss$/,
 				loaders: 'style-loader!css-loader!sass-loader'
